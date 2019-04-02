@@ -1,0 +1,46 @@
+<html>
+  <head></head>
+  <body>
+  <% invalid %>
+  <% if invalid %>
+    <h1>Error</h1>
+    <h3>Invalid parameters.</h3>
+    <p>Please enter:</p>
+    <p>&emsp;1. A single-character true symbol</p>
+    <p>&emsp;2. A single-character false symbol</p>
+    <p>&emsp;3. A size greater than or equal to 2</p>
+    <p>&emsp;4. Different characters for the true and false symbols</p>
+      <a href="http://localhost:4567">Back to main</a>
+  <%else%>
+    <table>
+      <tr>
+        <% for i in 0..size-1 %>
+          <th><b> <%= size-1-i %> <b></th>
+        <%end%>
+        <th><b> AND </b></th>
+        <th><b> OR </b></th>
+        <th><b> NAND </b></th>
+        <th><b> NOR </b></th>
+      </tr>
+      <% table_height = 2**size %>
+      <% table_width = size+4 %>
+      <% x_index = 0 %>
+      <% y_index = 0 %>
+      <% for i in 0..table_height-1 %>
+          <tr>
+          <% for j in 0..table_width-1 %>
+            <td> <%= t_arr[x_index + y_index] %> </td>
+            <% if j == table_width-1 %>
+              <% x_index = x_index + y_index+1 %>
+              <% y_index = 0 %>
+            <% else %>
+              <% y_index+=1 %>
+            <%end%>
+          <%end%>
+          </tr>
+      <%end%>
+    </table>
+    <br><a href="http://localhost:4567">Back to main</a>
+  <%end%>
+  </body>
+</html>
